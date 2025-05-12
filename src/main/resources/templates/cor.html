@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Cadastro de cor')}"></head>
+<body>
+
+<nav th:replace="~{fragments :: menu}"></nav>
+
+<h1 class="d-flex justify-content-center">Cores</h1>
+<form class="d-flex justify-content-center">
+    <input class="form-control me-2 w-25" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success bg-success text-white" type="submit">Search</button>
+</form>
+
+<div class="my-5 d-flex justify-content-center">
+    <table class="table table-hover w-25">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="c : ${cores}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.nome}"></td>
+                <td class="text-end">
+                    <div class="d-inline-flex ">
+                        <a class="btn btn-primary text-dark me-3"  th:href="@{/cores/editar/{id}(id=${c.id})}" role="button">
+                            <span class="material-symbols-outlined mt-1">edit</span>
+                        </a>
+                        <a class="btn btn-danger text-dark" href="#" role="button">
+                            <span class="material-symbols-outlined mt-1">delete</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center text-dark">
+    <a class="btn btn-success" href="/cor/cadastro" role="button">
+        Cadastrar
+        <span class="material-symbols-outlined align-middle">
+add
+</span>
+    </a>
+</div>
+
+</body>
+</html>

@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments :: head('Cadastro de cor')}"></head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="~{fragments :: menu}"></nav>
 
-<h1 class="d-flex justify-content-center">Cores</h1>
-<form class="d-flex justify-content-center">
-    <input class="form-control me-2 w-25" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success bg-success text-white" type="submit">Search</button>
-</form>
+<main class="flex-grow-1 d-flex flex-column justify-content-start pt-5">
+    <div class="container">
+        <h1 class="text-center mb-4">Cadastro de Cor</h1>
 
-<div class="my-5 d-flex justify-content-center">
-    <table class="table table-hover w-25">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="c : ${cores}">
-            <td th:text="${c.id}"></td>
-            <td th:text="${c.nome}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="row justify-content-center mt-n3">
+            <div class="col-md-6 col-lg-4">
+                <form class="p-4 border rounded shadow-sm bg-white" th:action="@{/cores/editar/{id}(id=${cor.id})}" th:object="${cor}" method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nome">
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>
