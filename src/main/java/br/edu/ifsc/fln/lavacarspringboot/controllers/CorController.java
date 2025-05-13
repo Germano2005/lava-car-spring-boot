@@ -2,15 +2,13 @@ package br.edu.ifsc.fln.lavacarspringboot.controllers;
 
 
 import br.edu.ifsc.fln.lavacarspringboot.models.Cor;
-import br.edu.ifsc.fln.lavacarspringboot.repositories.CorRepository;
 import br.edu.ifsc.fln.lavacarspringboot.services.CorService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/cor")
@@ -42,12 +40,29 @@ public class CorController {
         return new ModelAndView("redirect:/cor");
     }
 
-    @GetMapping("/editar/{id}")
-    public ModelAndView edit(@PathVariable int id){
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable int id){
+        corService.delete(id);
+        return new ModelAndView("redirect:/cor");
+    }
+
+    /*@GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable int id) {
         ModelAndView mv = new ModelAndView("cadastro-cor");
-        mv.addObject("cores", corService.findId(id));
+        Optional<Cor> corOpt = corService.findId(id);
+        if (corOpt.isPresent()) {
+            mv.addObject("cor", corOpt.get());
+        }
         return mv;
     }
+
+    @PostMapping("/edit/{id}")
+    public ModelAndView modify(@PathVariable int id, Cor corAtualizada) {
+        corService.update(id, corAtualizada);
+        return new ModelAndView("redirect:/cor");
+
+
+    }*/
 
 
 }

@@ -26,10 +26,10 @@
                 <td th:text="${c.nome}"></td>
                 <td class="text-end">
                     <div class="d-inline-flex ">
-                        <a class="btn btn-primary text-dark me-3"  th:href="@{/cores/editar/{id}(id=${c.id})}" role="button">
+                        <a class="btn btn-primary text-dark me-3" th:href="@{/cor/edit/{id}(id = ${c.id})}" role="button">
                             <span class="material-symbols-outlined mt-1">edit</span>
                         </a>
-                        <a class="btn btn-danger text-dark" href="#" role="button">
+                        <a class="btn btn-danger text-dark" th:href="@{/cor/delete/{id}(id = ${c.id})}" role="button"  onclick="return confirm('Tem certeza que deseja excluir esta cor?')">
                             <span class="material-symbols-outlined mt-1">delete</span>
                         </a>
                     </div>
